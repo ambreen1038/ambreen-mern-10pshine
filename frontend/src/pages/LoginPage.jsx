@@ -1,7 +1,7 @@
 // src/pages/LoginPage.jsx
 
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
 import { login } from '../services/auth';
 import { toast } from 'react-toastify';

@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+}
+
+.inner {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}

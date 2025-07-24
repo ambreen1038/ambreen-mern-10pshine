@@ -1,6 +1,11 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+// src/pages/SignUpPage.jsx
+
+import React, { useState } from 'react';
+import { useNavigate} from 'react-router-dom';
+import AuthForm from '../components/AuthForm';
 import { register } from '../services/auth';
+import { toast } from 'react-toastify'; // Using toast notifications
+import bg from '../assets/bg.png';
 
 export default function SignUpPage() {
   const [name, setName] = useState('');
@@ -12,28 +17,32 @@ export default function SignUpPage() {
     e.preventDefault();
     try {
       await register({ name, email, password });
-      alert('Registered successfully! Please log in.');
+      toast.success('Registered successfully! You can now log in.'); // success toast
       navigate('/login');
     } catch (err) {
-      alert(err.response?.data?.message || 'Signup failed');
+      toast.error(err.response?.data?.message || 'Sign-up failed'); // error toast
+      console.error('Signup error:', err);
     }
   };
 
   return (
-    <div style={pageStyle}>
-      <h2>Sign Up</h2>
-      <form onSubmit={submit} style={formStyle}>
-        <input placeholder="Name" value={name} onChange={e => setName(e.target.value)} required />
-        <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
-        <button type="submit">Sign Up</button>
-      </form>
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+    <div
+      className="auth-background"
+      style={{ backgroundImage: `url(${bg})` }}
+    >
+      <div className="auth-overlay">
+        <AuthForm
+          title="Sign Up"
+          fields={[
+            { label: 'Name', type: 'text', value: name, onChange: e => setName(e.target.value) },
+            { label: 'Email address', type: 'email', value: email, onChange: e => setEmail(e.target.value) },
+            { label: 'Password', type: 'password', value: password, onChange: e => setPassword(e.target.value) },
+          ]}
+          onSubmit={submit}
+          footerText="Already have an account?"
+          footerLink={{ href: '/login', label: 'Login here' }}
+        />
+      </div>
     </div>
   );
 }
-
-const pageStyle = { maxWidth: 400, margin: '4rem auto', textAlign: 'center' };
-const formStyle = { display: 'grid', gap: '1rem', padding: '2rem', border: '1px solid #ccc', borderRadius: 8 };

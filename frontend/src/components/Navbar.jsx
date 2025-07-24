@@ -1,4 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+// src/components/Navbar.jsx
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Include Link
+import styles from './Navbar.module.css';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -10,17 +13,22 @@ export default function Navbar() {
   };
 
   return (
-    <nav style={navStyle}>
-      <span>📝 NoteApp</span>
-      {token ? <button onClick={logout}>Logout</button> : null}
+    <nav className={styles.navbar}>
+      <Link to="/dashboard" className={styles.brand}>
+        📝 NoteApp
+      </Link>
+
+      <div>
+        {token ? (
+          <button className={styles.logoutBtn} onClick={logout}>
+            Logout
+          </button>
+        ) : (
+          <Link to="/login" className={styles.logoutBtn}>
+            Login
+          </Link>
+        )}
+      </div>
     </nav>
   );
 }
-
-const navStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '1rem 2rem',
-  background: '#333',
-  color: 'white'
-};
