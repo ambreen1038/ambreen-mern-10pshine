@@ -1,0 +1,16 @@
+/* src/pages/NoteEditor.css */
+.editor-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.ql-editor {
+  min-height: 200px;
+}
+
+.editor-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
