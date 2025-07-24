@@ -1,6 +1,11 @@
-import { useState } from 'react';
+// src/pages/LoginPage.jsx
+
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import AuthForm from '../components/AuthForm';
 import { login } from '../services/auth';
+import { toast } from 'react-toastify';
+import bg from '../assets/bg.png';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -10,28 +15,33 @@ export default function LoginPage() {
   const submit = async e => {
     e.preventDefault();
     try {
-      const res = await login({ email, password });
-      localStorage.setItem('token', res.data.token);
+      const { data } = await login({ email, password });
+      localStorage.setItem('token', data.token);
+      toast.success('Logged in successfully!');
       navigate('/dashboard');
     } catch (err) {
-      alert(err.response?.data?.message || 'Login failed');
+      toast.error(err.response?.data?.message || 'Login failed');
+      console.error('Login error:', err);
     }
   };
 
   return (
-    <div style={pageStyle}>
-      <h2>Login</h2>
-      <form onSubmit={submit} style={formStyle}>
-        <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
-        <button type="submit">Login</button>
-      </form>
-      <p>
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>
+    <div
+      className="auth-background"
+      style={{ backgroundImage: `url(${bg})` }}
+    >
+      <div className="auth-overlay">
+        <AuthForm
+          title="Sign In"
+          fields={[
+            { label: 'Email address', type: 'email', value: email, onChange: e => setEmail(e.target.value) },
+            { label: 'Password', type: 'password', value: password, onChange: e => setPassword(e.target.value) },
+          ]}
+          onSubmit={submit}
+          footerText="Don't have an account?"
+          footerLink={{ href: '/signup', label: 'Create one' }}
+        />
+      </div>
     </div>
   );
 }
-
-const pageStyle = { maxWidth: 400, margin: '4rem auto', textAlign: 'center' };
-const formStyle = { display: 'grid', gap: '1rem', padding: '2rem', border: '1px solid #ccc', borderRadius: 8 };
