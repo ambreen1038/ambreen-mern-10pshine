@@ -1,0 +1,60 @@
+/* src/pages/SignUpPage.module.css */
+/* Reuse the same styles as LoginPage.module.css */
+.authContainer {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.backgroundImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+.backgroundOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.authCard {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.brandLogo {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.brandLogo img {
+  height: 40px;
+  width: auto;
+}
+
+.authIllustration {
+  text-align: center;
+  margin: 1rem 0 2rem;
+}
+
+.authIllustration img {
+  max-width: 180px;
+  height: auto;
+}

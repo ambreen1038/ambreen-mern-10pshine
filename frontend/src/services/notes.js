@@ -1,28 +1,81 @@
-// src/services/notes.js
 import axios from 'axios';
-import { toast } from 'react-toastify';
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL + '/api/notes',
+  baseURL: `${process.env.REACT_APP_API_URL || 'http://localhost:5000/api'}/notes`,
+  timeout: 10000,
+  withCredentials: true,
 });
 
-// Attach token automatically
-API.interceptors.request.use(config => {
-  const token = localStorage.getItem('token');
-  if (token) config.headers.Authorization = `Bearer ${token}`;
-  return config;
-});
-
-API.interceptors.response.use(
-  res => res,
-  err => {
-    toast.error(err.response?.data?.message || 'Something went wrong');
-    return Promise.reject(err);
-  }
+// Set Authorization header for each request
+API.interceptors.request.use(
+  (config) => {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
 );
 
-export const getNotes = () => API.get('/');
-export const getNote = id => API.get(`/${id}`);
-export const createNote = data => API.post('/', data);
-export const updateNote = (id, data) => API.put(`/${id}`, data);
-export const deleteNote = id => API.delete(`/${id}`);
+// Handle errors clearly and consistently
+const handleError = (error, defaultMessage) => {
+  return {
+    message: error.response?.data?.message || defaultMessage,
+    code: error.response?.data?.code || 'UNKNOWN_ERROR',
+    status: error.response?.status || 500,
+  };
+};
+
+export const getNotes = async () => {
+  try {
+    const { data } = await API.get('/');
+    return data;
+  } catch (error) {
+    throw handleError(error, 'Failed to fetch notes');
+  }
+};
+
+export const searchNotes = async (query) => {
+  try {
+    const { data } = await API.get('/', { params: { q: query } });
+    return data;
+  } catch (error) {
+    throw handleError(error, 'Failed to search notes');
+  }
+};
+
+export const getNoteById = async (id) => {
+  try {
+    const { data } = await API.get(`/${id}`);
+    return data;
+  } catch (error) {
+    throw handleError(error, 'Failed to fetch note');
+  }
+};
+
+export const createNote = async (noteData) => {
+  try {
+    const { data } = await API.post('/', noteData);
+    return data;
+  } catch (error) {
+    throw handleError(error, 'Failed to create note');
+  }
+};
+
+export const updateNote = async (id, noteData) => {
+  try {
+    const { data } = await API.put(`/${id}`, noteData);
+    return data;
+  } catch (error) {
+    throw handleError(error, 'Failed to update note');
+  }
+};
+
+export const deleteNote = async (id) => {
+  try {
+    await API.delete(`/${id}`);
+  } catch (error) {
+    throw handleError(error, 'Failed to delete note');
+  }
+};

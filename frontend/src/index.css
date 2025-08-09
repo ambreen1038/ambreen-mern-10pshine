@@ -1,24 +1,52 @@
-html, body {
-  height: 50%;
-  margin: 0;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Better to use Tailwind's theme() function */
+  :root {
+    --radius: 10px;
+  }
+
+  /* Focus styles */
+  [type="text"]:focus,
+  [type="email"]:focus,
+  [type="url"]:focus,
+  [type="password"]:focus,
+  [type="search"]:focus,
+  textarea:focus,
+  select:focus {
+    @apply ring-2 ring-blue-500 ring-offset-2;
+  }
+
+  /* Scrollbar - works in Chrome/Edge */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full hover:bg-gray-400;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 hover:bg-gray-500;
+  }
 }
 
-.auth-background {
-  /*background-image: url('../assets/bg.png');*/
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100vh;
-  position: relative;
+@layer utilities {
+  /* Animation */
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
-.auth-overlay {
-  position: fixed; /* Use fixed instead of absolute */
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
+.animate-floating {
+  animation: floating 3s ease-in-out infinite;
 }

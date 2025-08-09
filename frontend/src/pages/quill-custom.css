@@ -1,0 +1,32 @@
+/* Sky Blue Quill Toolbar */
+.ql-toolbar.ql-snow {
+  background-color: #0ea5e9; /* Tailwind sky-500 */
+  border: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.ql-toolbar.ql-snow .ql-picker,
+.ql-toolbar.ql-snow button {
+  color: white !important;
+  transition: background 0.2s ease;
+}
+
+.ql-toolbar.ql-snow button:hover,
+.ql-toolbar.ql-snow .ql-picker-label:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ql-toolbar.ql-snow .ql-picker-options {
+  background-color: #0ea5e9 !important;
+  border: none;
+}
+
+.ql-toolbar.ql-snow .ql-picker-options .ql-picker-item {
+  color: white !important;
+}
+
+.ql-container.ql-snow {
+  border: 1px solid #bae6fd; /* light sky blue */
+  border-radius: 0 0 8px 8px;
+  min-height: 200px;
+}
