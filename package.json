@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "cors": "^2.8.5"
-  }
+  },
+  "scripts": {
+  "sonar": "sonar-scanner"
+}
+
 }
