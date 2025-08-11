@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Particles from "react-tsparticles";
 import { debounce } from "lodash";
-import api from "../services/auth";
+import api from "../services/auth"; // axios instance
 import NavBar from "../components/NavBardash";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
