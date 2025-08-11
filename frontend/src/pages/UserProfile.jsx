@@ -26,7 +26,7 @@ export default function UserProfile() {
   const handlePasswordChange = async (e) => {
     e.preventDefault();
     if (formData.newPassword !== formData.confirmPassword) {
-      setMessage("Passwords do not match");
+      setMessage("❌ Passwords do not match");
       return;
     }
     setLoading(true);
