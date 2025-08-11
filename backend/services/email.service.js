@@ -13,7 +13,7 @@ exports.sendPasswordReset = async (email, token, requestId) => {
     const resetUrl = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
 
     await transporter.sendMail({
-      from: `"10PShine Support" <${process.env.EMAIL_USER}>`, // optional: to show sender name
+      from: `"10PShine Support" <${process.env.EMAIL_USER}>`, //to show sender name
       to: email,
       subject: 'Password Reset Request',
       html: `
