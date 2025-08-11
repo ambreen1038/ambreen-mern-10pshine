@@ -4,7 +4,7 @@ module.exports = function errorHandler(err, req, res, next) {
     return next(err);
   }
 module.exports = (err, req, res, next) => {
-  if (err.message.includes('argument handler must be a function')) {
+  if (err.message.includes('argument handler must  a function')) {
     logger.error('Router configuration error - check for conflicting packages');
     return res.status(500).json({
       code: 'ROUTER_ERROR',

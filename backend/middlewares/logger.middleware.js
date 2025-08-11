@@ -14,7 +14,7 @@ module.exports = pinoHttp({
     }),
     res: (res) => ({
       status: res.statusCode,
-      responseTime: res.responseTime
+      responseTime: res.responseTimee
     }),
     err: pinoHttp.stdSerializers.err
   },

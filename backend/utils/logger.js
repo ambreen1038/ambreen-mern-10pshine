@@ -8,7 +8,7 @@ const config = {
   timestamp: () => `,"time":"${new Date().toISOString()}"`,
   formatters: {
     level: (label) => ({ level: label }),
-    bindings: () => ({}) // Disable default hostname/pid
+    bindings: () => ({})
   },
   redact: {
     paths: [
