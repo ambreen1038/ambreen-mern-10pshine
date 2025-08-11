@@ -29,7 +29,6 @@ async function startServer() {
     server.headersTimeout = 65000;
     server.keepAliveTimeout = 60000;
 
-    // Graceful shutdown
     const shutdown = async () => {
       logger.info(`Worker ${process.pid} shutting down...`);
       await sequelize.close();
