@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const compression = require('compression'); // Added
-const cookieParser = require('cookie-parser'); //  Added
+const compression = require('compression'); // ✅ Added
+const cookieParser = require('cookie-parser'); // ✅ Added
 const rateLimit = require('express-rate-limit');
 const crypto = require('crypto');
 const { logger, httpLogger } = require('./utils/logger');
@@ -10,7 +10,7 @@ const errorHandler = require('./middlewares/error.middleware');
 const loadRoutes = require('./utils/route-loader');
 const app = express();
 
-//  Critical error handling (must be first)
+// 🔥 Critical error handling (must be first)
 process.on('unhandledRejection', (err) => {
   logger.error('UNHANDLED REJECTION:', err);
 });

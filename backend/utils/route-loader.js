@@ -24,4 +24,4 @@ module.exports = function loadRoutes(routeFile) {
     console.error(`Failed to load route file ${routePath}:`, err);
     throw err;
   }
-}
+};
