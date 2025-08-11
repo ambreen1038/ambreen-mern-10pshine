@@ -2,7 +2,7 @@ const { Note } = require('../models');
 const { logger } = require('../utils/logger');
 const { Op } = require('sequelize'); // Import once here
 
-// ✅ GET all notes (with optional search query)
+// ✅ GET all notes (with optional search query) + counts
 exports.getAllNotes = async (req, res, next) => {
   try {
     const searchQuery = req.query.q?.trim() || '';
