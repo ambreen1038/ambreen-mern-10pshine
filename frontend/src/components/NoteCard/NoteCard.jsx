@@ -41,7 +41,7 @@ function PinIcon({ filled, className }) {
 export default function NoteCard({ note, onDelete, onTagClick, onTogglePin, viewMode }) {
   const navigate = useNavigate();
 
-  // Handle color rotation for string or number ID
+  // Handle color rotation for string
   const colorClass = COLORS[
     typeof note.id === 'number'
       ? note.id % COLORS.length
