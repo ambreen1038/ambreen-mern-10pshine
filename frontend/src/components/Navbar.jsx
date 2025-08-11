@@ -27,7 +27,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Center: Views, Tags, Search */}
+        {/* Center: Search */}
         {user && (
           <div className="hidden md:flex items-center space-x-4">
             <button className="p-2 rounded hover:bg-white/20 text-white" title="Grid View">
