@@ -93,7 +93,6 @@ const LoginPage = () => {
   return (
     <>
       {/* Toast container for all toast notifications */}
-     {/*<ToastContainer {...toastConfig} />*/}
 
       <div className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
         <video
